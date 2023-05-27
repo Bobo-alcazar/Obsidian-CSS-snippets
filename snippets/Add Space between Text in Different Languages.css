@@ -1,0 +1,13 @@
+/*
+Name: Add Space between Text in Different Languages
+Author: Bobo_alcazar
+Illustration: 
+If you attach `lang` attribute onto text in language different from the overall language environment, a six-per-em space will be added before and after the piece of text, to seperate them, beautifying the layout typesetting.
+*/
+
+span[lang]::before {
+	content: " ";
+}
+span[lang]::after {
+	content: " ";
+}

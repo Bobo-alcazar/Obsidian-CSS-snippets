@@ -1,0 +1,105 @@
+/*
+Name: Right to Left in Vertical Lines
+Author: Bobo_alcazar
+Illustration: 
+It provides a typesetting environment in right to left in vertical lines for some writing system different from Latin script such as Hanntsyh, Eonmun, Kana and so on.
+Others:
+- Horizontal layout from left to right is not the only existing way of people's writing system. Except for this, Ktav Ashuri, Arabic abjad are horizontal from right to left. Hantsyh, Eonmun are vertical from right to left. Hudum Mongol bichig, Manchu alphabet are vertical from left to right. In general, horizontal right writing is not specific. So it is necessary to provide various layout environment.
+- If the text covers the whole screen, single line will be too long to read. So I must reduce the length of one line. Since horizontal layout is not bilateral symmetrical, there's no need to make the space on both sides of the text equal. Traditionally, more space will be kept over the text. But that's because when we read on paper books, the book is laid flat on the table, so the bottom half is closer to us and more easy to read. But when we read on computer, the monitor is standing in front us, so the top half is easier to read. For this reason, I leave the bottom half for the space.
+*/
+
+
+/*以下將閱讀模式調整爲直排*/
+
+.markdown-preview-view {
+	/*操作窗口*/
+	writing-mode: vertical-rl;/*改爲直排*/
+	padding: 7px 50px 0px 50px;/*調整邊距*/
+}
+
+.markdown-preview-view.is-readable-line-width .markdown-preview-sizer {
+	/*內容塊*/
+	max-width: none !important;
+	padding: 5px 5px 2px 5px !important; /*25px是版框與內容的距離*/
+	min-height: 10px /*一個任意的極小值*/ !important;
+	/*以上用於消去內聯的過大尺寸*/
+	width: 100%;
+	overflow-y: hidden;
+	margin-bottom: 30% !important;
+	border-bottom: 1px solid var(--text-normal); /*版框*/
+	text-align: justify;/*縱書對上下對齊要求會更髙*/
+}
+
+/*---------------------------------------------------------*/
+
+/*以下將源碼模式調整爲直排*/
+
+.markdown-source-view {
+	writing-mode: vertical-rl;
+	width: 100% ;
+	height: 100%;
+}
+.cm-editor {
+	width: 100%;
+	height: 100%;
+}
+/*以上是操作窗口父元素*/
+
+.ͼ1 .cm-scroller {
+	/*操作窗口*/
+	/*display: block !important;*/
+	width: 100%;
+	height: 100%;
+	padding: 7px 50px 0px 50px !important;
+}
+
+.markdown-source-view.mod-cm6.is-readable-line-width .cm-sizer {
+	/*內容塊*/
+	max-width: 100000px;
+	/*以上用於消去內聯的過小尺寸*/
+	width: 100%;
+	height: 100%;
+	overflow-y: hidden;/*不顯示橫向溢出文字*/
+	text-align: justify;/*縱書對上下對齊要求會更髙*/
+}
+/*以上四個選擇其均重設寬 髙，是爲了使窗口大小正常*/
+
+.cm-content.cm-lineWrapping {
+	/*去除標題後的編輯窗口*/
+	/*調整它是爲了使得內容高度正常*/
+	max-width: 100000px !important;/*消除不需要的限制*/
+	padding: 0 !important;/*消除內聯的底部距離*/
+}
+
+.cm-sizer .inline-title {
+	margin-top: 0 !important;
+	margin-bottom: 25% !important;
+}
+.markdown-source-view.mod-cm6 .cm-contentContainer {
+	margin-top: 0 !important;
+	margin-bottom: 25% !important;
+}
+/*以兩個選擇器內容應保持一致，用於在編輯界面留出天頭與地腳*/
+/*注意：天頭地腳不要用相對長度，因爲標題與內容的字號不一致*/
+
+/*---------------------------------------------------------*/
+
+/*以下調整標題*/
+body{
+  --file-header-font-size: calc(1.5 * var(--font-ui-large));
+}
+.view-header-title-container {
+	line-height: calc(2 * var(--font-ui-large));
+}
+.view-header-title {
+	/*橫向標題左行*/
+	direction: rtl;
+	unicode-bidi: bidi-override;
+}
+.view-header {
+	height: 60px;
+}
+/*以下行內標題*/
+.inline-title {
+	margin-left: 1em ;/*隔開標題與內容*/
+}
