@@ -69,6 +69,7 @@ Others:
 	/*調整它是爲了使得內容高度正常*/
 	max-width: 100000px !important;/*消除不需要的限制*/
 	padding: 0 !important;/*消除內聯的底部距離*/
+	width: 100% !important; /*不知爲何，默認寬度被設爲了0*/
 }
 
 .cm-sizer .inline-title {
