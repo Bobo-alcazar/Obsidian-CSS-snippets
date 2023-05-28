@@ -14,16 +14,22 @@ Others:
 .markdown-preview-view {
 	/*操作窗口*/
 	writing-mode: vertical-rl;/*改爲直排*/
-	padding: 7px 50px 0px 50px;/*調整邊距*/
+	padding: 0px 0px 0px 0px;/*調整邊距*/
+	border-left: 32px solid var(--background-primary);
+	border-right: 32px solid var(--background-primary);
+	/*給左右加邊框是爲了遮擋溢出的內容，這樣就可將下方內容塊寬度從100%調整爲fit-content，overflow-y從scroll改爲hidden，使得操作窗口內容溢出，從而在有邊框的前提下，令滑動條在屏幕最下方*/
+	margin-bottom: 25px;/*這是爲了擡高滑動條，避開右下狀態欄*/
+	overflow-y: scroll;
 }
 
 .markdown-preview-view.is-readable-line-width .markdown-preview-sizer {
 	/*內容塊*/
 	max-width: none !important;
-	padding: 5px 5px 2px 5px !important; /*25px是版框與內容的距離*/
+	padding: 0 0 2px 0 !important; /*25px是版框與內容的距離*/
 	min-height: 10px /*一個任意的極小值*/ !important;
 	/*以上用於消去內聯的過大尺寸*/
-	width: 100%;
+	width: fit-content;/*允許超寬，從而將滾動任務遞給操作窗口，滾動條因而顯示在最下方*/
+	min-width: 100%;/*保證寬度*/
 	overflow-y: hidden;
 	margin-bottom: 30% !important;
 	border-bottom: 1px solid var(--text-normal); /*版框*/
